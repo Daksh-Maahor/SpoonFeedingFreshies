@@ -33,6 +33,22 @@
    - Navigate to the extracted folder
    - You can now see all the notes I painstakingly collected and added here so that you don't have to
 
+### For Linux Users (Cool people 😎)
+
+1. **Download the Repository**
+   - Click the green "Code" button at the top of this repository page
+   - Select "Download ZIP" from the dropdown menu
+   - The ZIP file will be downloaded to your default downloads folder
+
+2. **Extract the ZIP File**
+   - Open the terminal
+   - Navigate to your Downloads folder
+   - Unzip the files using unzip command
+
+3. **Open the Folder**
+   - Navigate to the extracted folder
+   - You can now see all the notes I painstakingly collected and added here so that you don't have to, in linux (Since you're cool 😎)
+
 ### Download Individual PDF Files
 
 1. **Navigate to the PDF File**
