@@ -9,6 +9,9 @@
    - https://www.youtube.com/watch?v=_Ut-nQ535iE
    - https://www.youtube.com/watch?v=U1KbM4ffiLg
 
+### Piracy Guide for Useful Books
+   - https://fmhy.net/readingpiracyguide
+
 ## Getting Started
 
 ### For Windows Users
