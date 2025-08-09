@@ -12,6 +12,9 @@
 ### Piracy Guide for Useful Books
    - https://fmhy.net/readingpiracyguide
 
+### Competitive Programmer's Handbook
+   - https://cses.fi/book/book.pdf
+
 ## Getting Started
 
 ### For Windows Users
