@@ -15,6 +15,9 @@
 ### Competitive Programmer's Handbook
    - https://cses.fi/book/book.pdf
 
+### CH-117 Practical Guide Playlist
+   - https://youtube.com/playlist?list=PLLua-GoSiGAucoudjoefsgFgcjz1FFchw&si=wwRhBQ37e8ehny48
+
 ## Getting Started
 
 ### For Windows Users
