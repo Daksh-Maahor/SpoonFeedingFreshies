@@ -1,5 +1,16 @@
 # Spoon Feeding Freshies
 
+## Mid Semester Time Table
+
+All Exams are held from 8:30 AM - 10:30 AM
+
+| Date | Subject |
+| :---: | :---: |
+| 13-09-25 | MA-105 |
+| 16-09-25 | CS-101 |
+| 18-09-25 | MS-101 |
+| 20-09-25 | CS-105 |
+
 ## Useful Links
 
 ### MS-101 EE Reference Videos (They don't cover everything though)
