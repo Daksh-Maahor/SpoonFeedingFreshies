@@ -20,6 +20,8 @@ All Exams are held from 8:30 AM - 10:30 AM
    - https://www.youtube.com/watch?v=_Ut-nQ535iE
    - https://www.youtube.com/watch?v=U1KbM4ffiLg
 
+   - https://youtube.com/@allaboutelectronics?si=Wp5qHDvxwgF4ydLn (A good playlist)
+
 ### Piracy Guide for Useful Books
    - https://fmhy.net/readingpiracyguide
 
