@@ -1,0 +1,400 @@
+\documentclass[14pt]{extarticle}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[thinc]{esdiff}
+\usepackage{bbm}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\newcommand{\bb}{\mathbbm}
+\title{\vspace{-3cm}MA-105 Tutorial-8 Solutions}
+\author{Daksh Maahor}
+\date{September 2025}
+
+\begin{document}
+\maketitle
+
+\bigskip
+
+\begin{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Compute the arc-length of the cycloid}
+\[
+\vec{r}(t) = \bigl(a(t-\sin t),\; a(1-\cos t)\bigr)\qquad 0\le t\le 2\pi
+\]
+
+\textbf{Sol.}
+\begin{align*}
+\vec{r}(t) &= \bigl(a(t-\sin t),\; a(1-\cos t)\bigr)\\
+\Rightarrow\quad \vec{r}'(t) &= \bigl(a(1-\cos t),\; a\sin t\bigr)
+\end{align*}
+
+Now:
+
+\begin{align*}
+\|\vec{r}'(t)\|^2 
+&= \bigl(a(1-\cos t)\bigr)^2 + \bigl(a\sin t\bigr)^2 \\
+&= a^2(1-\cos t)^2 + a^2\sin^2 t \\
+&= a^2\Bigl((1-\cos t)^2 + \sin^2 t\Bigr)
+\end{align*}
+
+\begin{align*}
+(1-\cos t)^2 + \sin^2 t
+&= (1 - 2\cos t + \cos^2 t) + \sin^2 t \\
+&= 1 - 2\cos t + (\cos^2 t + \sin^2 t) \\
+&= 1 - 2\cos t + 1 \\
+&= 2 - 2\cos t \\
+&= 2(1-\cos t)
+\end{align*}
+
+Hence
+\[
+\|\vec{r}'(t)\|^2 = a^2\cdot 2(1-\cos t) = 2a^2(1-\cos t)
+\]
+
+Use the half-angle identity $1-\cos t = 2\sin^2\!\dfrac{t}{2}$ to rewrite:
+
+\[
+\|\vec{r}'(t)\|^2 = 2a^2 \cdot 2\sin^2\!\frac{t}{2} = 4a^2 \sin^2\!\frac{t}{2}
+\]
+
+\[
+\|\vec{r}'(t)\| = \sqrt{4a^2 \sin^2\!\frac{t}{2}} = 2a\left|\sin\frac{t}{2}\right|
+\]
+
+The arc-length is
+\[
+L=\int_{0}^{2\pi}\|\vec{r}'(t)\|\,dt
+= \int_{0}^{2\pi} 2a\left|\sin\frac{t}{2}\right|\,dt
+\]
+
+\[
+L = \int_{u=0}^{\pi} 2a \left|\sin u\right|\cdot 2\,du = 4a\int_{0}^{\pi} |\sin u|\,du = 8a
+\]
+
+\noindent \textbf{Final answer:} $\displaystyle L = 8a$
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Parametrize the ellipse $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ and set up the perimeter integral in terms of the eccentricity $e=\sqrt{1-\dfrac{b^2}{a^2}}$ assuming $b<a$}
+
+\textbf{Sol.}
+
+A standard parametrization of the ellipse is
+\[
+x=a\cos\theta\qquad y=b\sin\theta\qquad \theta\in[0,2\pi]
+\]
+
+Differentiate component-wise:
+\[
+\vec{r}(\theta)=(a\cos\theta,\; b\sin\theta)\qquad
+\vec{r}'(\theta)=(-a\sin\theta,\; b\cos\theta)
+\]
+\[
+\|\vec{r}'(\theta)\|^2 = a^2\sin^2\theta + b^2\cos^2\theta
+\]
+
+Therefore the perimeter (circumference) is
+\[
+L=\int_{0}^{2\pi}\|\vec{r}'(\theta)\|\,d\theta
+= \int_{0}^{2\pi} \sqrt{a^2\sin^2\theta + b^2\cos^2\theta}\, d\theta
+\]
+
+\textbf{Symmetry reduction} The integrand has period $\pi$ and symmetry in the four quadrants hence
+\[
+L = 4\int_{0}^{\pi/2}\sqrt{a^2\sin^2\theta + b^2\cos^2\theta}\, d\theta
+\]
+
+Write $b^2 = a^2(1-e^2)$ where $0\le e<1$ since $b<a$ Then
+
+\begin{align*}
+a^2\sin^2\theta + b^2\cos^2\theta
+&= a^2\sin^2\theta + a^2(1-e^2)\cos^2\theta \\
+&= a^2\bigl(\sin^2\theta + (1-e^2)\cos^2\theta\bigr) \\
+&= a^2\bigl(\sin^2\theta + \cos^2\theta - e^2\cos^2\theta\bigr) \\
+&= a^2\bigl(1 - e^2\cos^2\theta\bigr)
+\end{align*}
+
+Therefore the integrand simplifies to
+\[
+\|\vec{r}'(\theta)\| = a\sqrt{1 - e^2\cos^2\theta}
+\]
+
+Thus the perimeter becomes
+\[
+\boxed{\,L = 4a\int_{0}^{\pi/2} \sqrt{1 - e^2\cos^2\theta}\, d\theta\, }
+\]
+
+(One often sees the alternative form with $\sin^2$ inside by the substitution $\theta\mapsto \tfrac{\pi}{2}-\theta$
+\[
+\boxed{L = 4a\int_{0}^{\pi/2} \sqrt{1 - e^2\sin^2\theta}\, d\theta}
+\]
+which is the standard complete elliptic integral of the second kind)
+
+\medskip
+
+\noindent \textbf{Remark:} This integral cannot be expressed in elementary functions for arbitrary $e$ it is denoted
+\[
+L = 4a\,E(e)
+\]
+where $E(e)=\int_{0}^{\pi/2}\sqrt{1-e^2\sin^2\theta}\,d\theta$ is the complete elliptic integral of the second kind
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{If $\hat a$ and $\hat b$ are two unit vectors in $\bb R^2$ such that $\hat a\times\hat b\neq\mathbf{0}$ show that the set}
+\[
+\{\hat a\cos t + \hat b\sin t \mid t\in[0,2\pi]\}
+\]
+\textbf{is an ellipse}
+
+\textbf{Sol.}
+
+Write the unit vectors in coordinates:
+\[
+\hat a = (a_1,a_2)\qquad \hat b=(b_1,b_2)
+\]
+The condition $\hat a\times\hat b\neq\mathbf{0}$ in $\bb R^2$ means the scalar (2D) cross product (or determinant)
+\[
+D := a_1 b_2 - a_2 b_1 \neq 0
+\]
+so $\hat a$ and $\hat b$ are linearly independent
+
+Form the parametric coordinates $(x,y)$ for $t\in[0,2\pi]$:
+\[
+x(t) = a_1\cos t + b_1\sin t\qquad
+y(t) = a_2\cos t + b_2\sin t
+\]
+
+We solve these two linear equations for $\cos t$ and $\sin t$ Treat it as a $2\times2$ linear system in the unknowns $\cos t,\sin t$
+
+\[
+\begin{pmatrix} x \\ y \end{pmatrix}
+=
+\begin{pmatrix} a_1 & b_1 \\ a_2 & b_2 \end{pmatrix}
+\begin{pmatrix} \cos t \\ \sin t \end{pmatrix}
+\]
+
+Since the coefficient matrix has determinant $D\neq 0$ it is invertible Using Cramer's rule the solutions are
+
+\begin{align*}
+\cos t &= \frac{1}{D}\det\begin{pmatrix} x & b_1 \\ y & b_2 \end{pmatrix}
+= \frac{b_2 x - b_1 y}{D}\\[6pt]
+\sin t &= \frac{1}{D}\det\begin{pmatrix} a_1 & x \\ a_2 & y \end{pmatrix}
+= \frac{a_1 y - a_2 x}{D}
+\end{align*}
+
+Now impose the trigonometric identity $\cos^2 t + \sin^2 t = 1$ Substitute the expressions above:
+
+\[
+\left(\frac{b_2 x - b_1 y}{D}\right)^2 + \left(\frac{a_1 y - a_2 x}{D}\right)^2 = 1
+\]
+
+Multiply by $D^2$ and expand to obtain a quadratic equation in $(x,y)$:
+
+\[
+(b_2 x - b_1 y)^2 + (a_1 y - a_2 x)^2 = D^2
+\]
+
+Expand and collect like terms:
+
+\begin{align*}
+(b_2 x - b_1 y)^2 &= b_2^2 x^2 - 2 b_1 b_2 x y + b_1^2 y^2\\
+(a_1 y - a_2 x)^2 &= a_1^2 y^2 - 2 a_1 a_2 x y + a_2^2 x^2
+\end{align*}
+
+Adding yields
+
+\[
+(b_2^2 + a_2^2) x^2 - 2(b_1 b_2 + a_1 a_2) x y + (b_1^2 + a_1^2) y^2 = D^2
+\]
+
+Thus the curve satisfies a quadratic form
+\[
+A x^2 + B xy + C y^2 = D^2
+\]
+with
+\[
+A = a_2^2 + b_2^2\qquad B = -2(a_1 a_2 + b_1 b_2)\qquad C = a_1^2 + b_1^2
+\]
+
+To determine the type of conic compute the discriminant $\Delta = B^2 - 4AC$
+
+\begin{align*}
+\Delta &= \bigl(-2(a_1 a_2 + b_1 b_2)\bigr)^2 - 4(a_2^2 + b_2^2)(a_1^2 + b_1^2)\\[6pt]
+&= 4(a_1 a_2 + b_1 b_2)^2 - 4\bigl(a_1^2 + b_1^2\bigr)\bigl(a_2^2 + b_2^2\bigr)\\[6pt]
+&= 4\Bigl((a_1 a_2 + b_1 b_2)^2 - (a_1^2 + b_1^2)(a_2^2 + b_2^2)\Bigr)
+\end{align*}
+
+The expression inside the parentheses simplifies to $-(a_1 b_2 - a_2 b_1)^2 = -D^2$ Hence
+
+\[
+\Delta = 4(-D^2) = -4D^2 < 0
+\]
+
+Since $\Delta<0$ the curve is an ellipse
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Identify the parametrized surface}
+\[
+\vec{r}(u,v) = \bigl(\sqrt{1+v^2}\cos u,\;\sqrt{1+v^2}\sin u,\; v\bigr)
+\]
+
+\textbf{Sol.}
+
+Write the components as $x=\sqrt{1+v^2}\cos u$ $y=\sqrt{1+v^2}\sin u$ $z=v$ Compute $x^2+y^2$
+
+\begin{align*}
+x^2 + y^2 &= ( \sqrt{1+v^2}\cos u)^2 + ( \sqrt{1+v^2}\sin u)^2 \\
+&= (1+v^2)(\cos^2 u + \sin^2 u) \\
+&= 1+v^2
+\end{align*}
+
+But $z=v$ so $v^2=z^2$ Substitute:
+
+\[
+x^2 + y^2 = 1 + z^2
+\]
+
+Rearrange:
+
+\[
+x^2 + y^2 - z^2 = 1
+\]
+
+This is the equation of a one-sheeted hyperboloid
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Find a bijective continuous map from the cylinder}
+\[
+\bb S_1 := \{(x,y,z)\in\bb R^3 \mid x^2+y^2 \le 1\}
+\]
+\textbf{onto}
+\[
+\bb S_2 := \{(X,Y,Z)\in\bb R^3 \mid X^2+Y^2-Z^2 \le 1\}
+\]
+
+\textbf{Sol.}
+
+Define the map $f:\bb S_1\to\bb R^3$ by
+\[
+f(x,y,z) = \bigl(X,Y,Z\bigr) = \bigl(x\sqrt{1+z^2},\; y\sqrt{1+z^2},\; z\bigr)
+\]
+
+\textbf{(i) $f$ maps $\bb S_1$ into $\bb S_2$}
+
+Take $(x,y,z)\in\bb S_1$ so $x^2+y^2\le 1$ Compute
+
+\begin{align*}
+X^2 + Y^2 - Z^2
+&= (1+z^2)(x^2+y^2) - z^2 \\
+&= x^2+y^2 + z^2(x^2+y^2 - 1)
+\end{align*}
+
+Because $x^2+y^2-1\le 0$ we have
+\[
+X^2+Y^2-Z^2 \le x^2+y^2 \le 1
+\]
+
+Hence $f(\bb S_1)\subseteq \bb S_2$
+
+\medskip
+
+\textbf{(ii) Injectivity}
+
+Suppose $f(x_1,y_1,z_1)=f(x_2,y_2,z_2)$ Then $z_1=z_2=z$ and
+\[
+x_1\sqrt{1+z^2} = x_2\sqrt{1+z^2}\qquad
+y_1\sqrt{1+z^2} = y_2\sqrt{1+z^2}
+\]
+Thus $x_1=x_2$ and $y_1=y_2$ so injective
+
+\medskip
+
+\textbf{(iii) Surjectivity}
+
+Let $(X,Y,Z)\in\bb S_2$ Define
+\[
+(x,y,z) := \Bigl(\frac{X}{\sqrt{1+Z^2}},\; \frac{Y}{\sqrt{1+Z^2}},\; Z\Bigr)
+\]
+Then
+\[
+x^2+y^2 = \frac{X^2+Y^2}{1+Z^2} \le 1
+\]
+and $f(x,y,z)=(X,Y,Z)$ Hence surjective
+
+\medskip
+
+\textbf{(iv) Continuity and inverse}
+
+Both $f$ and
+\[
+f^{-1}(X,Y,Z) = \Bigl(\frac{X}{\sqrt{1+Z^2}},\; \frac{Y}{\sqrt{1+Z^2}},\; Z\Bigr)
+\]
+are continuous Hence a homeomorphism
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Vector calculus identities} For a scalar $f:\bb R^3\to\bb R$ and a vector field
+$F=(F_1,F_2,F_3):\bb R^3\to\bb R^3$ (assume all components are $C^2$) prove
+\[
+\nabla\times(\nabla f)=\mathbf{0}\qquad
+\nabla\cdot(\nabla\times F)=0
+\]
+
+\textbf{Sol.}
+
+\noindent\textbf{(A) $\nabla\times(\nabla f)=\mathbf{0}$}
+
+\[
+\nabla f = (f_x,f_y,f_z)
+\]
+
+By definition
+\[
+\nabla\times(\nabla f)
+= \begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\
+\partial_x & \partial_y & \partial_z \\
+f_x & f_y & f_z
+\end{vmatrix}
+= \bigl(f_{z y}-f_{y z},\; f_{x z}-f_{z x},\; f_{y x}-f_{x y}\bigr)
+\]
+
+By equality of mixed partial derivatives (Clairaut's theorem) all terms vanish so
+\[
+\nabla\times(\nabla f) = (0,0,0) = \mathbf{0}
+\]
+
+\medskip
+
+\noindent\textbf{(B) $\nabla\cdot(\nabla\times F)=0$}
+
+\[
+\nabla\times F =
+\begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k}\\
+\partial_x & \partial_y & \partial_z\\
+F_1 & F_2 & F_3
+\end{vmatrix}
+= (F_{3y}-F_{2z},\; F_{1z}-F_{3x},\; F_{2x}-F_{1y})
+\]
+
+Now take divergence:
+\[
+\nabla\cdot(\nabla\times F) = (F_{3y}-F_{2z})_x + (F_{1z}-F_{3x})_y + (F_{2x}-F_{1y})_z
+\]
+
+Expand:
+\[
+= F_{3yx} - F_{2zx} + F_{1zy} - F_{3xy} + F_{2xz} - F_{1yz}
+\]
+
+By equality of mixed partials each pair cancels hence
+\[
+\nabla\cdot(\nabla\times F)=0
+\]
+
+\end{enumerate}
+\end{document}

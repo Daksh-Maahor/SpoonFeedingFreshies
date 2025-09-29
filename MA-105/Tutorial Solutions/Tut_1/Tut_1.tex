@@ -1,0 +1,296 @@
+\documentclass[14pt]{extarticle}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{hyperref}
+
+\title{\vspace{-3cm}MA-105 Tutorial-1 Solutions}
+\author{Daksh Maahor}
+\date{August 2025}
+
+\begin{document}
+\maketitle
+
+\bigskip
+
+\begin{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Define $a_1=\sqrt{2},\ a_2=\sqrt{2+\sqrt{2}}$, and generally $a_n=\sqrt{2+a_{n-1}}$ for $n\ge 2$. Prove by induction that the sequence is monotonically increasing and bounded above. Find its limit}
+
+\begin{proof}
+\textbf{Monotonicity by induction}  
+
+Base case:  
+\[
+a_2=\sqrt{2+\sqrt{2}}>\sqrt{2}=a_1
+\]
+
+Inductive step: assume for some $n\ge2$ that
+\[
+a_n>a_{n-1}
+\]
+We show $a_{n+1}>a_n$ Consider
+\[
+a_{n+1}-a_n=\sqrt{2+a_n}-\sqrt{2+a_{n-1}}
+\]
+Rationalize the difference:
+\[
+a_{n+1}-a_n=\frac{(2+a_n)-(2+a_{n-1})}{\sqrt{2+a_n}+\sqrt{2+a_{n-1}}}
+=\frac{a_n-a_{n-1}}{\sqrt{2+a_n}+\sqrt{2+a_{n-1}}}
+\]
+By the inductive hypothesis $a_n-a_{n-1}>0$ and the denominator is positive, hence
+\[
+a_{n+1}-a_n>0
+\]
+Thus $a_{n+1}>a_n$ and the induction closes Therefore $(a_n)$ is strictly increasing
+
+\medskip
+\textbf{Boundedness above by induction}  
+
+Base case: $a_1=\sqrt{2}<2$  
+
+Inductive step: assume $a_n<2$ for some $n\ge1$. Then
+\[
+a_{n+1}=\sqrt{2+a_n}<\sqrt{2+2}=\sqrt{4}=2
+\]
+So $a_{n+1}<2$ and by induction $a_n<2$ for all $n$ Hence $(a_n)$ is bounded above by $2$
+
+\medskip
+\textbf{Limit}  
+
+Since $(a_n)$ is increasing and bounded above it converges Let
+\[
+L=\lim_{n\to\infty}a_n
+\]
+Passing to the limit in the recursion yields
+\[
+L=\sqrt{2+L}
+\]
+Square both sides
+\[
+L^2=2+L \iff L^2-L-2=0 \iff (L-2)(L+1)=0
+\]
+Thus $L=2$ or $L=-1$ Since every $a_n>0$ we must have $L=2$ Therefore
+\[
+\boxed{\lim_{n\to\infty}a_n=2}
+\]
+\end{proof}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Let $x_n=\dfrac{1}{n+1}+\dfrac{1}{n+2}+\dots+\dfrac{1}{2n}$. Prove that $(x_n)$ is monotonically increasing and bounded above. Prove that the limit of $(x_n)$ lies between $\tfrac12$ and $1$}
+
+\begin{proof}
+We can write
+\[
+x_n=\sum_{k=n+1}^{2n}\frac{1}{k}=H_{2n}-H_n
+\]
+where $H_m=1+\tfrac12+\cdots+\tfrac1m$ is the $m$-th harmonic number.
+
+\medskip
+\textbf{Monotonicity:} 
+Compute $x_{n+1}-x_n$:
+\begin{align*}
+x_{n+1}-x_n&=\Bigl(H_{2n+2}-H_{n+1}\Bigr)-\Bigl(H_{2n}-H_n\Bigr)\\
+&=\frac{1}{2n+1}+\frac{1}{2n+2}-\frac{1}{n+1}
+\end{align*}
+
+Simplify:
+
+\begin{align*}
+&=\frac{1}{2n+1}+\frac{1}{2n+2}-\frac{1}{n+1} \\
+&=\frac{1}{2n+1} - \frac{1}{2n+2} \\
+&= \frac{1}{(2n+1)(2n+2)}
+\end{align*}
+
+After simplification, the difference becomes positive, hence $x_{n+1}>x_n$. Therefore $(x_n)$ is monotonically increasing.
+
+\medskip
+\textbf{Boundedness above:} 
+For each $k\in\{n+1,\dots,2n\}$ we have $\tfrac1k<\tfrac1n$. Since there are $n$ terms,
+\[
+x_n<\frac{n}{n}=1
+\]
+so the sequence is bounded above by $1$.
+
+\medskip
+\textbf{Limit bounds:} 
+Note that for $k=n+1,\dots,2n$ we also have $k\le2n$, hence $\tfrac1k\ge\tfrac1{2n}$. Thus
+\[
+x_n\ge n\cdot \frac{1}{2n}=\frac{1}{2}
+\]
+So $\tfrac12\le x_n<1$ for all $n$. Therefore the limit $L=\lim_{n\to\infty}x_n$ exists and lies between $\tfrac12$ and $1$.
+
+\[
+\boxed{\tfrac12\le\lim_{n\to\infty}x_n\le1}
+\]
+\end{proof}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Suppose $(x_n)$ is a monotonically increasing sequence. Prove that the sequence of averages $y_n=\tfrac1n(x_1+\dots+x_n)$ is also monotonically increasing}
+
+\begin{proof}
+We want to prove $y_{n+1}\ge y_n$ for all $n$.
+
+\[
+y_n=\frac{1}{n}\sum_{k=1}^n x_k, 
+\qquad y_{n+1}=\frac{1}{n+1}\sum_{k=1}^{n+1} x_k
+\]
+
+Multiply to compare:
+\[
+(n+1)y_{n+1}=x_{n+1}+\sum_{k=1}^n x_k, 
+\quad n y_n=\sum_{k=1}^n x_k
+\]
+
+So
+\[
+(n+1)y_{n+1}-n y_n=x_{n+1}\ge x_n
+\]
+
+Now
+\[
+(n+1)(y_{n+1}-y_n)=x_{n+1}-y_n
+\]
+
+But since $x_{n+1}\ge x_k$ for each $k\le n$, the average $y_n$ cannot exceed $x_{n+1}$. Thus $x_{n+1}\ge y_n$ and hence $y_{n+1}\ge y_n$. Therefore $(y_n)$ is monotonically increasing.
+\end{proof}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Discuss whether the sequence $x_n=\dfrac{n}{n^2+1}+\dfrac{n}{n^2+2}+\dots+\dfrac{n}{n^2+n}$ is convergent}
+
+\begin{proof}
+Write the sum as
+\[
+x_n=\sum_{k=1}^n \frac{n}{n^2+k}
+\]
+
+For each $k\in\{1,\dots,n\}$ we have the inequalities
+\[
+\frac{n}{n^2+n}\le \frac{n}{n^2+k}\le \frac{n}{n^2+1}
+\]
+
+Summing these inequalities over $k=1,\dots,n$ gives
+\[
+\sum_{k=1}^n \frac{n}{n^2+n} \le x_n \le \sum_{k=1}^n \frac{n}{n^2+1}
+\]
+
+The left and right sums simplify to
+\[
+\frac{n^2}{n^2+n} \le x_n \le \frac{n^2}{n^2+1}
+\]
+
+Divide numerator and denominator on both bounds by $n^2$ to obtain
+\[
+\frac{1}{1+\tfrac{1}{n}} \le x_n \le \frac{1}{1+\tfrac{1}{n^2}}
+\]
+
+Take limits as $n\to\infty$ The left bound tends to $1$ and the right bound tends to $1$ Therefore by the sandwich theorem
+
+\[
+\boxed{\lim_{n\to\infty} x_n = 1}
+\]
+\end{proof}
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Let $x_n=\dfrac{1\cdot 3\cdot 5\cdots (2n-1)}{2\cdot 4\cdot 6\cdots (2n)}$. Show that $nx_n^2$ is monotonically increasing and $\bigl(n+\tfrac12\bigr)x_n^2$ is monotonically decreasing.}
+
+\begin{proof}
+
+Notice that
+\[
+x_{n+1} = \frac{1\cdot 3\cdots (2n-1)\cdot (2n+1)}{2\cdot 4\cdots 2n \cdot 2(n+1)}
+= x_n \cdot \frac{2n+1}{2n+2}
+\]
+
+\medskip
+
+Consider the ratio
+\begin{align*}
+\frac{(n+1)x_{n+1}^2}{n x_n^2} &= \frac{n+1}{n} \left(\frac{2n+1}{2n+2}\right)^2 \\
+&= \frac{n+1}{n} \cdot \frac{(2n+1)^2}{(2n+2)^2} \\
+&= \frac{(n+1)(2n+1)^2}{n(2n+2)^2}
+\end{align*}
+
+Simplify the denominator: $2n+2=2(n+1)$, so
+\begin{align*}
+\frac{(n+1)(2n+1)^2}{n\cdot 4(n+1)^2} &= \frac{(2n+1)^2}{4n(n+1)} \\
+&= \frac{4n^2 +4n +1}{4n(n+1)} \\
+&= 1 + \frac{1}{4n(n+1)} > 1
+\end{align*}
+
+Hence
+\[
+(n+1)x_{n+1}^2 > n x_n^2
+\]
+so $nx_n^2$ is monotonically increasing
+
+\medskip
+
+Consider the ratio
+\[
+\frac{(n+3/2)x_{n+1}^2}{(n+1/2)x_n^2} = \frac{n+3/2}{n+1/2} \left(\frac{2n+1}{2n+2}\right)^2
+= \frac{n+3/2}{n+1/2} \cdot \frac{(2n+1)^2}{(2n+2)^2}
+\]
+
+Write $2n+2 = 2(n+1)$:
+\begin{align*}
+\frac{n+3/2}{n+1/2} \cdot \frac{(2n+1)^2}{4(n+1)^2} &= \frac{2n+3}{2n+1} \cdot \frac{(2n+1)^2}{4(n+1)^2}\\ &= \frac{2n+3}{4(n+1)^2} (2n+1)
+\\&= \frac{(2n+1)(2n+3)}{4(n+1)^2}
+\end{align*}
+
+Observe
+\[
+(2n+1)(2n+3) = 4n^2 + 8n +3 < 4n^2 + 8n +4 = 4(n+1)^2
+\]
+
+Thus the ratio is less than $1$, so 
+\[
+\bigl(n+\frac12\bigr)x_n^2
+\] 
+is monotonically decreasing
+
+\end{proof}
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textbf{Let $(a_n)$ be a sequence such that $a_j\in\{0,1,\dots,9\}$ for all $j$. For $n=1,2,3,\dots$, construct
+\[
+x_n=\frac{a_1}{10}+\frac{a_2}{10^2}+\cdots+\frac{a_n}{10^n}
+\]
+Show that $(x_n)$ is monotonically increasing and bounded above. Call $\lim_{n\to\infty}x_n=a$, with $a\in[0,1]$. Is it true that given any $a$ there exists a corresponding sequence $(a_n)$ as above such that $\lim_{n\to\infty}x_n=a$?}
+
+\begin{proof}
+\textbf{Monotonicity:} 
+Clearly $x_{n+1}=x_n+\tfrac{a_{n+1}}{10^{n+1}}\ge x_n$, so $(x_n)$ is monotonically increasing.
+
+\medskip
+\textbf{Boundedness:} 
+Since each $a_j\le9$,
+\[
+x_n\le\frac{9}{10}+\frac{9}{10^2}+\cdots+\frac{9}{10^n}<\frac{9}{10}\cdot\frac{1}{1-\tfrac1{10}}=1
+\]
+Thus $x_n<1$, and bounded above by $1$.
+
+\medskip
+\textbf{Limit existence:} 
+An increasing bounded sequence converges, so $\lim_{n\to\infty}x_n=a$ exists, with $a\in[0,1]$.
+
+\medskip
+\textbf{Representation of any $a\in[0,1]$:} 
+This construction is precisely the decimal expansion of real numbers in $[0,1]$. Every real number in $[0,1]$ has such a decimal representation. The only subtlety is that some numbers (like $0.4999\dots=0.5000\dots$) have two representations, but at least one sequence $(a_n)$ always exists.
+
+\[
+\boxed{\text{Every }a\in[0,1]\text{ can be obtained as }\lim_{n\to\infty}x_n}
+\]
+\end{proof}
+
+\end{enumerate}
+\end{document}
